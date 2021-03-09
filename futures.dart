@@ -3,10 +3,20 @@ Future<String> fetchUserOrder() => Future.delayed(
   () => 'Cappucino'
 );
 
-void main(){
+Future<String> fetchUserOrder2() => Future.value('Espresso');
+
+Future<String> fetchUserOrder3() => Future.error(Exception('Out of milk'));
+
+Future<void> main() async {
   print('Program started');
-  fetchUserOrder().then((order) => print('Order is ready $order'))
-    .catchError((error) => print(error))
-    .whenComplete(() => print('Done'));
+ try {final order = await fetchUserOrder();
+  print(order);
+  final order2 = await fetchUserOrder3();
+  print(order2);
+  } catch(e){
+    print(e);
+  } finally {
+    print('Done');
+  }
     
 }
