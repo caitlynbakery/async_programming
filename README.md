@@ -37,3 +37,22 @@ Future<void> main() async {
     print(e);
   } }
 ```
+
+## Streams
+
+A stream is similar to an iterable, but it's async and we don't know the order of the values.
+We can create a stream from an iterable using the `Stream.fromIterable` statement. We can also
+reduce elements in a stream using `.reduce` on a stream. If we want to iterate through a Stream,
+we have to use a for loop to loop through the values. Normally, when we create Stream functions, we
+use Future as the type.
+
+```dart
+Future<int> sumStream(Stream<int> stream) async {
+  var sum = 0;
+  await for(var value in stream) {
+    sum += value;
+  }
+  return sum;
+}
+
+```
