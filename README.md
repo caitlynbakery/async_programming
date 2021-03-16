@@ -56,3 +56,22 @@ Future<int> sumStream(Stream<int> stream) async {
 }
 
 ```
+
+There are different constructors we can use on a Stream.
+
+* `Stream.fromIterable` creates Stream from a list
+* `Stream.value` creates Stream from a single value
+* `Stream.error` emits an error in the Stream
+* `Stream.empty` crates an empty stream
+* `Stream.fromFuture` emits a value after a delay
+* `Stream.periodic` emits values periodically
+
+There are also various methods we can use with a Stream. One of these methods is
+the `map` method. The `map` method takes in a Stream and performs a function for every value in
+the Stream. We then use the `forEach` method to view the items.
+
+```dart
+final stream = Stream.fromIterable([1,2,3]);
+final doubles = stream.map((value) => value * 2).where((event) => event > 3);
+await doubles.forEach(print);
+```
